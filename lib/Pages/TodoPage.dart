@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testproject/Pages/utils/TodoTile.dart';
+import './utils/DialogBox.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,9 +25,7 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) {
-          return Dialog(
-            child: Text("data"),
-          );
+          return DialogBox();
         });
   }
 
