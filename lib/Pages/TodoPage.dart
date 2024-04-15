@@ -8,6 +8,9 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+// text controller
+
+final _controller = TextEditingController();
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -15,9 +18,17 @@ class _HomePageState extends State<HomePage> {
     ["Make pizza", false],
     ["Make firebase", true],
   ];
+  //checkbox was tapped
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       todoList[index][1] = !todoList[index][1];
+      print(_controller);
+    });
+  }
+
+  void SaveNewTask() {
+    setState(() {
+      todoList.add([_controller.text, false]);
     });
   }
 
@@ -25,7 +36,11 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) {
-          return DialogBox();
+          return DialogBox(
+            controller: _controller,
+            onSave: SaveNewTask,
+            onCancel: () => Navigator.of(context).pop(),
+          );
         });
   }
 
